@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
 
   updateProfile(): void {
     const userChanges = this.userForm.getRawValue();
-    this.profileService.updateProfile(userChanges).subscribe(() {=>
+    this.profileService.updateProfile(userChanges).subscribe(() => {
       let snackBarRef = this.snackBar.open('Modifications enregistrées.', 'Retour', {
         duration: 3000
       });
