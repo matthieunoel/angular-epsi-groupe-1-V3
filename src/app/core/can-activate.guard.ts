@@ -47,15 +47,15 @@ export class CanActivateGuard implements CanActivate {
           }
           return true;
         } else {
-          if ( !response.roles.includes('ROLE_ADMIN') && ('admin' in next.data) ) {
-            this.router.navigate(['/auth/signin']);
+          // if ( !response.roles.includes('ROLE_ADMIN') && ('admin' in next.data) ) {
+          //   this.router.navigate(['/auth/signin']);
 
-            this.snackBar.open('Vous n\'avez pas le droid d\'accéder a ces pages.', 'Ok', {
-              duration: 3000
-            });
+          //   this.snackBar.open('Vous n\'avez pas le droid d\'accéder a ces pages.', 'Ok', {
+          //     duration: 3000
+          //   });
 
-            return false;
-          }
+          //   return false;
+          // }
           return true;
         }
       })
