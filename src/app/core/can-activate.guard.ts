@@ -40,10 +40,10 @@ export class CanActivateGuard implements CanActivate {
           }
           return true;
         } else {
-          if ( !response.roles.includes('ROLE_ADMIN') && ('admin' in next.data) ) {
-            this.router.navigate(['/auth/signin']);
-            return false;
-          }
+          // if ( !response.roles.includes('ROLE_ADMIN') && ('admin' in next.data) ) {
+          //   this.router.navigate(['/auth/signin']);
+          //   return false;
+          // }
           return true;
         }
       })
