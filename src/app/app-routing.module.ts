@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CanActivateGuard} from './core/can-activate.guard';
-import { LandingComponent } from './landing/landing.component';
+import { LandingComponent } from './auth/components/landing/landing.component';
 
 const routes: Routes = [
   {
@@ -15,11 +15,8 @@ const routes: Routes = [
     loadChildren: () => import('./dash/dash.module').then(mod => mod.DashModule),
   },
   {
-    path: 'landing', component: LandingComponent,
-  },
-  {
     path: '**',
-    redirectTo: '/landing'
+    redirectTo: '/auth/landing'
   }
 ];
 

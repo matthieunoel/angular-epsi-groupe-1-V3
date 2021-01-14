@@ -9,12 +9,10 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ApiInterceptor} from './core/api.interceptor';
 import {SharedModule} from './shared/shared.module';
 import { MatSnackBarModule } from '@angular/material';
-import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent,
   ],
   imports: [
     CoreModule,

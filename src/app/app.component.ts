@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   get isOnLandingPage(): boolean {
-    return this.router.url == '/landing';
+    return this.router.url == '/auth/landing';
   }
 
   signout(): void {
