@@ -5,6 +5,11 @@ import { LandingComponent } from './auth/components/landing/landing.component';
 
 const routes: Routes = [
   {
+    path: 'admin',
+    canActivate: [CanActivateGuard],
+    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule),
   },
