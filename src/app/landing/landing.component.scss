@@ -1,0 +1,21 @@
+#container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloc {
+    margin: 0.7em;
+    width: 40%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloc button {
+    width: 50%;
+}
