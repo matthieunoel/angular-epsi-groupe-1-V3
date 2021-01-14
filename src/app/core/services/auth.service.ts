@@ -24,7 +24,6 @@ export class AuthService {
   }
 
   static get isAdmin(): boolean {
-    console.log('AuthService.user :', AuthService.user);
     if (AuthService.user === null) {
       return false;
     }
