@@ -3,6 +3,9 @@
     <mat-icon>more_vert</mat-icon>
   </button>
     <mat-menu #nav_menu="matMenu">
+        <button *ngIf="isAdmin" routerLink="/admin/" mat-menu-item>
+        <span>Administration</span>
+      </button>
         <button *ngIf="!isSignedIn" routerLink="/auth/signin" mat-menu-item>
       <span>Se connecter</span>
     </button>
@@ -18,7 +21,6 @@
         <button *ngIf="isSignedIn" (click)="signout()" mat-menu-item>
       <span>Se déconnecter</span>
     </button>
-
     </mat-menu>
 </nav>
 

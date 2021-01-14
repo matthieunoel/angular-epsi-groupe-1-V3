@@ -23,6 +23,14 @@ export class AuthService {
     return AuthService.user !== null;
   }
 
+  static get isAdmin(): boolean {
+    console.log('AuthService.user :', AuthService.user);
+    if (AuthService.user === null) {
+      return false;
+    }
+    return AuthService.user.roles.includes('ROLE_ADMIN');
+  }
+
   signin(email: string, password: string): Observable<any> {
     return this.httpClient.post(
       `${environment.api}/api/login_check`,

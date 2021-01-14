@@ -21,6 +21,10 @@ export class AppComponent {
     return AuthService.isSignedIn;
   }
 
+  get isAdmin(): boolean {
+    return AuthService.isAdmin;
+  }
+
   get isOnLandingPage(): boolean {
     return this.router.url == '/auth/landing';
   }
