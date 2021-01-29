@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { TagInterface } from 'src/app/core/interfaces/tag.interface';
 import { TagAdminService } from 'src/app/core/services/tagAdmin.service';
 
@@ -9,21 +10,25 @@ import { TagAdminService } from 'src/app/core/services/tagAdmin.service';
 })
 export class MainComponent implements OnInit {
 
-  public tags: TagInterface[];
-  public displayedTags: TagInterface[];
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  private tagsList: TagInterface[];
   // displayedColumns: string[] = ['id', 'name', 'type', 'iteration', 'created'];
-  displayedColumns: string[] = ['name', 'iteration'];
+  public displayedColumns: string[] = ['name', 'iteration'];
+
+  public displayedTags: MatTableDataSource<TagInterface>;
 
   constructor(
     private tagService: TagAdminService
   ) {
-    this.tags = [];
+    // this.tags = [];
   }
 
   ngOnInit() {
 
     this.tagService.get().subscribe((res:any[]) => {
-      const tempTagsList = [];
+      let tempTagsList = [];
       res.forEach(resTag => {
         tempTagsList.push({
           id: resTag.id,
@@ -33,11 +38,14 @@ export class MainComponent implements OnInit {
           created: new Date(resTag.created.toString())
         });
       });
-      this.tags = tempTagsList.sort((a, b) => {
+      tempTagsList = tempTagsList.sort((a, b) => {
         return - (a.iteration - b.iteration);
       });
-      console.log('tags :', this.tags);
-      this.displayedTags = this.tags;
+      console.log('tags :', tempTagsList);
+      this.tagsList = tempTagsList;
+      this.displayedTags = new MatTableDataSource(tempTagsList);
+      this.displayedTags.sort = this.sort;
+      this.displayedTags.paginator = this.paginator;
     });
 
   }
@@ -47,13 +55,13 @@ export class MainComponent implements OnInit {
     // console.log('src input :', input);
 
     const tempTagsList = [];
-    this.tags.forEach(tag => {
+    this.tagsList.forEach(tag => {
       if (tag.name.includes(input)) {
         tempTagsList.push(tag);
       }
     });
 
-    this.displayedTags = tempTagsList;
+    this.displayedTags.data = tempTagsList;
 
   }
 
