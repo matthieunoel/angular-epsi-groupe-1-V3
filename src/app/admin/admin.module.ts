@@ -4,6 +4,7 @@ import { MainComponent } from './components/main/main.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { MatButtonModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSnackBarModule, MatSortModule, MatTableModule } from '@angular/material';
 import { CreateTagComponent } from './components/create-tag/create-tag.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MainComponent, CreateTagComponent],
@@ -16,7 +17,8 @@ import { CreateTagComponent } from './components/create-tag/create-tag.component
     MatSortModule,
     MatIconModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
