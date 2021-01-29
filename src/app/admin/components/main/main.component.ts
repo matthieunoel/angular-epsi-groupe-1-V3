@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MatPaginator, MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 import { TagInterface } from 'src/app/core/interfaces/tag.interface';
 import { TagAdminService } from 'src/app/core/services/tagAdmin.service';
 
@@ -21,7 +22,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     private tagService: TagAdminService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,6 +45,10 @@ export class MainComponent implements OnInit {
 
     this.displayedTags.data = tempTagsList;
 
+  }
+
+  public add() {
+    this.router.navigate(['/admin/createTag']);
   }
 
   public async delete(id: number) {
