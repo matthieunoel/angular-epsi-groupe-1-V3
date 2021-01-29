@@ -12,10 +12,15 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-flow: column;
     margin-top: 25px;
 }
 
 table {
     width: 90%;
     margin-bottom: 2em;
+}
+
+mat-form-field {
+    width: 85%;
 }

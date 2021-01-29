@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { TagInterface } from 'src/app/core/interfaces/tag.interface';
 import { TagAdminService } from 'src/app/core/services/tagAdmin.service';
 
@@ -11,7 +10,7 @@ import { TagAdminService } from 'src/app/core/services/tagAdmin.service';
 export class MainComponent implements OnInit {
 
   public tags: TagInterface[];
-
+  public displayedTags: TagInterface[];
   // displayedColumns: string[] = ['id', 'name', 'type', 'iteration', 'created'];
   displayedColumns: string[] = ['name', 'iteration'];
 
@@ -38,17 +37,24 @@ export class MainComponent implements OnInit {
         return - (a.iteration - b.iteration);
       });
       console.log('tags :', this.tags);
+      this.displayedTags = this.tags;
     });
 
   }
 
+  public async search(event: any) {
+    const input = event.target.value;
+    // console.log('src input :', input);
+
+    const tempTagsList = [];
+    this.tags.forEach(tag => {
+      if (tag.name.includes(input)) {
+        tempTagsList.push(tag);
+      }
+    });
+
+    this.displayedTags = tempTagsList;
+
+  }
+
 }
-
-// TP : exo 4
-
-// partie admin ( suite )
-// dans la page admin
-// afficher un tableau qui récupère les tags https://material.angular.io/components/table/overview
-// récupérer les tag avec l'url : https://api.wecolearn.com/api/admin/tags
-// afficher les données : nom, importance
-// utiliser un input pour filtrer les données ! ;)

@@ -1,10 +1,12 @@
 <h1>Administration</h1>
 
 <div class="container">
-    <!-- <ul>
-        <li *ngFor="let tag of tags">{{tag.name}}</li>
-    </ul> -->
-    <table mat-table [dataSource]="tags" class="mat-elevation-z8">
+
+    <mat-form-field>
+        <input matInput placeholder="Rechercher ..." name="srcBar" (change)="search($event)" (keyup)="search($event)" (keypress)="search($event)" (keydown)="search($event)">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="displayedTags" class="mat-elevation-z8">
 
         <!-- <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> Id </th>
