@@ -1,6 +1,6 @@
 # angular-epsi-groupe-1-avcmkm
 
-Je suis allé jusqu'à l'exercice 6. Vous pourrez retrouver différentes releases correspondantes aux différents exercices.
+Je suis allé jusqu'à l'exercice 7. Vous pourrez retrouver différentes releases correspondantes aux différents exercices.
 
 ## Notes
 
@@ -42,3 +42,5 @@ avec l'api : admin/tag/{id} (delete)
 6 : créer un formulaire de création de tag
 avec un unique champ : 'name'
 avec l'api : admin/tag ( post ) qui accepte un objet {name: string}
+
+7 : faire en sorte que le tableau se met à jour après chaque action ( delete, create )
