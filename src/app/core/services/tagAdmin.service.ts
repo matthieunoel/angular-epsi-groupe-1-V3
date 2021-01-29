@@ -17,6 +17,24 @@ export class TagAdminService {
       `${environment.api}/api/admin/tags`
     );
   }
+
+  delete(id: number): Observable<any> {
+
+    // return new Observable(observer => {
+    //   setTimeout(() => {
+    //     observer.next(`Delete ID(${​​​​​id​}).`);
+    //     observer.complete();
+    //   }, 500);
+    // });
+
+    // console.log('URL :', `${environment.api}/api/admin/tag/${​​​​​id.toString()}​​​​​`);
+
+    return this.httpClient.delete(
+      `${environment.api}/api/admin/tag/${id}`
+    );
+
+  }
+
 }
 
 

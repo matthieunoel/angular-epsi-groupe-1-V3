@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './components/main/main.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSnackBarModule, MatSortModule, MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [MainComponent],
@@ -12,7 +12,10 @@ import { MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule } fro
     MatTableModule,
     MatInputModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule
   ]
 })
 export class AdminModule { }
