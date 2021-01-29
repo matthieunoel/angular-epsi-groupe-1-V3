@@ -27,9 +27,7 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.initTagsList();
-
   }
 
   public async search(event: any) {
@@ -58,35 +56,41 @@ export class MainComponent implements OnInit {
     });
 
     snackBarRef.onAction().subscribe(() => {
-      this.tagService.delete(id).subscribe((res:any) => {
+      this.tagService.delete(id).subscribe(async (res:any) => {
         // console.log('delete response :', res);
-        this.initTagsList();
+        this.displayedTags.data = await this.getTagsList();
       });
     });
 
   }
 
-  private initTagsList() {
-
-    this.tagService.get().subscribe((res:any[]) => {
-      let tempTagsList = [];
-      res.forEach(resTag => {
-        tempTagsList.push({
-          id: resTag.id,
-          name: resTag.name,
-          type: resTag.type,
-          iteration: resTag.iteration,
-          created: new Date(resTag.created.toString())
-        });
-      });
-      tempTagsList = tempTagsList.sort((a, b) => {
-        return - (a.iteration - b.iteration);
-      });
-      // console.log('tags :', tempTagsList);
-      this.tagsList = tempTagsList;
-      this.displayedTags = new MatTableDataSource(tempTagsList);
+  private async initTagsList() {
+      this.displayedTags = new MatTableDataSource(await this.getTagsList());
       this.displayedTags.sort = this.sort;
       this.displayedTags.paginator = this.paginator;
+  }
+
+  private getTagsList(): Promise<TagInterface[]> {
+    return new Promise((resolve, reject) => {
+
+      this.tagService.get().subscribe((res:any[]) => {
+        let tagsList = [];
+        res.forEach(resTag => {
+          tagsList.push({
+            id: resTag.id,
+            name: resTag.name,
+            type: resTag.type,
+            iteration: resTag.iteration,
+            created: new Date(resTag.created.toString())
+          });
+        });
+        tagsList = tagsList.sort((a, b) => {
+          return - (a.iteration - b.iteration);
+        });
+        // console.log('tags :', tagsList);
+        resolve(tagsList);
+      });
+
     });
   }
 
