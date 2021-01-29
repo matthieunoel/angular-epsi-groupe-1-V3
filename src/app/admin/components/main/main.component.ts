@@ -21,9 +21,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     private tagService: TagAdminService
-  ) {
-    // this.tags = [];
-  }
+  ) {}
 
   ngOnInit() {
 
