@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
 
   public async delete(id: number) {
 
-    let snackBarRef = this.snackBar.open('Vous allez supprimer un tag. Êtes vous certains ?', 'Confirmer', {
+    const snackBarRef = this.snackBar.open('Vous allez supprimer un tag. Êtes vous certains ?', 'Confirmer', {
       duration: 10000
     });
 

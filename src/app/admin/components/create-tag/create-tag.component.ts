@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TagInterface } from 'src/app/core/interfaces/tag.interface';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { TagAdminService } from 'src/app/core/services/tagAdmin.service';
 
 @Component({
   selector: 'app-create-tag',
@@ -11,7 +13,11 @@ export class CreateTagComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor() { }
+  constructor(
+    private snackBar: MatSnackBar,
+    private tagService: TagAdminService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -19,12 +25,21 @@ export class CreateTagComponent implements OnInit {
     });
   }
 
-  onSubmit(): void{
-    console.log(this.form.value);
+  onSubmit(): void {
+
+    const name = this.form.value.name;
+
+    const snackBarRef = this.snackBar.open(`Vous allez ajouter un tag "${name}". Êtes vous certains ?`, 'Confirmer', {
+      duration: 10000
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      this.tagService.post(name).subscribe(async (res:any) => {
+        console.log('post response :', res);
+        this.router.navigate(['/admin/main']);
+      });
+    });
+
   }
 
 }
-
-// 6 : créer un formulaire de création de tag
-// avec un unique champ : 'name'
-// avec l'api : admin/tag ( post ) qui accepte un objet {​​​​​ name : string }

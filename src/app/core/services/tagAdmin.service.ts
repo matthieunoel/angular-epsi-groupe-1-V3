@@ -35,6 +35,17 @@ export class TagAdminService {
 
   }
 
+  post(name: string): Observable<any> {
+
+    return this.httpClient.post(
+      `${environment.api}/api/admin/tag`,
+      {
+        name
+      }
+    );
+
+  }
+
 }
 
 
